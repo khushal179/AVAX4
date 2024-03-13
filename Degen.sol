@@ -43,8 +43,10 @@ contract DegenStore is ERC20 {
         return items;
     }
 
-   
-
+   function transfer(address to, uint256 amount) public override returns (bool) {
+        _transfer(_msgSender(), to, amount);
+        return true;
+   }
     function burn(uint256 amount) external {
         require(balanceOf(msg.sender) >= amount, "Insufficient balance");
         _burn(msg.sender, amount);
